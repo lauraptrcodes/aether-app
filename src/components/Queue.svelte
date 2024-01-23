@@ -18,7 +18,7 @@
 </script>
 
 <div class="aether-queue">
-    <div class="divide-y divide-slate-50">
+    <div class="divide-y divide-aether-dark-gray">
         {#each tracks as track}
             <QueueTrack artist={track.artist} title={track.title}></QueueTrack>
         {/each}

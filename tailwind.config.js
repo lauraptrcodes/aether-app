@@ -7,6 +7,9 @@ module.exports = {
       'aether-salmon-shadow': '#DB6967',
       'aether-pink': '#F478FF',
       'aether-bg-dark': '#121212',
+      'aether-dark-gray': '#404040',
+      'aether-mid-gray': '#919191',
+      'aether-gray': '#bababa',
       'aether-white': '#fff'
     },
     extend: {},
