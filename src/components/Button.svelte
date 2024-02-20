@@ -4,15 +4,12 @@
     export let icon;
     export let buttonText;
 
-    const iconClasses = 'stroke-aether-white group-hover:text-aether-salmon'
+    const iconClasses = 'stroke-aether-white'
 </script>
 
 <!-- markup (zero or more items) goes here -->
 <div class="aether-button">
-    <div
-        class="group p-3
-    hover:border-aether-salmon"
-    >
+    <div class="group p-2 rounded-md hover:bg-aether-dark-gray">
         {#if icon}
             <Icon iconName={icon} tailwindClasses={iconClasses}/>
         {/if}
