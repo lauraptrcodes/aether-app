@@ -1,0 +1,20 @@
+[
+    {
+        "title": "titel",
+        "artist": "interpret",
+        "trackSrc": "tracks/glasswoosh2.wav",
+        "trackImg": ""
+    },
+    {
+        "title": "babedibubedi",
+        "artist": "delivery",
+        "trackSrc": "tracks/glasswoosh2.wav",
+        "trackImg": ""
+    },
+    {
+        "title": "intro",
+        "artist": "bay laurel",
+        "trackSrc": "",
+        "trackImg": ""
+    }
+]

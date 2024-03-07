@@ -2,11 +2,16 @@
     import LikeButton from "./LikeButton.svelte";
     export let artist;
     export let title;
+    export let isCurrentTrack;
+
+    let activeTailwindClasses = isCurrentTrack ? 'border-l-4 border-aether-salmon':'';
+    let activeTailwindText = isCurrentTrack ? 'text-aether-salmon' : '';
+
 </script>
 
-<div class="aether-queuetrack p-2 group">
+<div class="p-2 {activeTailwindClasses}">
     <div class="w-full flex">
-        <p>
+        <p class="{activeTailwindText}">
           {title} - {artist}  
         </p>
         <LikeButton icon='heart'></LikeButton>
