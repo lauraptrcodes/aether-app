@@ -14,6 +14,6 @@
         <p class="{activeTailwindText}">
           {title} - {artist}  
         </p>
-        <LikeButton icon='heart'></LikeButton>
+        <LikeButton></LikeButton>
     </div>
 </div>

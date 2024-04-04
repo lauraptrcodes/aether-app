@@ -5,16 +5,20 @@
     import Queue from "./Queue.svelte";
     import TrackInfo from "./TrackInfo.svelte";
     import Controls from "./Controls.svelte";
+    import Button from "./Button.svelte";
 
     let currentTrackIndex = 1; // tracks brauchen vllt eindeutige id's weil der aktuelle track ja immer auf die erste stelle in der queue rutscht
     setContext("currentTrackIndex", currentTrackIndex);
     let totalTrackTime;
 
+
     const loadAndPlayTrack = () => {
-        let audio = new Audio( getCurrentAudioSrc() );
-        audio.onloadedmetadata = () => {
-            totalTrackTime = audio.duration;
-            audio.play(); //promise überprüfen & ggf error catchen
+        let audioFile = new Audio("https://download.pariyatti.org/free/_moIbLs95/along_the_path_audio/streaming/Lumbini.mp3");
+
+        //let audioFile = new Audio( getCurrentAudioSrc() );
+        audioFile.onloadedmetadata = () => {
+            this.totalTrackTime = audioFile.duration;
+            audioFile.play(); //promise überprüfen & ggf error catchen
         }
 
         //audio.ended
@@ -26,7 +30,11 @@
     }
 
     setContext('audioMuted', true);
-    loadAndPlayTrack();
+    //loadAndPlayTrack();
+    function handleAudioMuted(e){
+        console.log('whaddup');
+        loadAndPlayTrack();
+    }
 </script>
 
 <div class="aether-content">
@@ -34,5 +42,6 @@
         <Queue />
         <TrackInfo track={tracks[currentTrackIndex]} />
     </div>
-    <audio autoplay controls preload="metadata" src={getCurrentAudioSrc()}></audio>
+    <Controls on:audio-muted-update = {handleAudioMuted}/>
+    <!--<audio autoplay controls preload="metadata" src={getCurrentAudioSrc()}></audio>-->
 </div>
