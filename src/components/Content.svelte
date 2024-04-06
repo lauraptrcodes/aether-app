@@ -5,7 +5,6 @@
     import Queue from "./Queue.svelte";
     import TrackInfo from "./TrackInfo.svelte";
     import Controls from "./Controls.svelte";
-    import Button from "./Button.svelte";
 
     let currentTrackIndex = 1; // tracks brauchen vllt eindeutige id's weil der aktuelle track ja immer auf die erste stelle in der queue rutscht
     setContext("currentTrackIndex", currentTrackIndex);
@@ -13,7 +12,8 @@
 
 
     const loadAndPlayTrack = () => {
-        let audioFile = new Audio("https://download.pariyatti.org/free/_moIbLs95/along_the_path_audio/streaming/Lumbini.mp3");
+        console.log(tracks[currentTrackIndex].trackSrc)
+        let audioFile = new Audio(tracks[currentTrackIndex].trackSrc);
 
         //let audioFile = new Audio( getCurrentAudioSrc() );
         audioFile.onloadedmetadata = () => {
@@ -32,7 +32,6 @@
     setContext('audioMuted', true);
     //loadAndPlayTrack();
     function handleAudioMuted(e){
-        console.log('whaddup');
         loadAndPlayTrack();
     }
 </script>
