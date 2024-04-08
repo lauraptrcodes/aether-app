@@ -6,32 +6,51 @@
     import TrackInfo from "./TrackInfo.svelte";
     import Controls from "./Controls.svelte";
 
-    let currentTrackIndex = 1; // tracks brauchen vllt eindeutige id's weil der aktuelle track ja immer auf die erste stelle in der queue rutscht
+    let currentTrackIndex = 2; // tracks brauchen vllt eindeutige id's weil der aktuelle track ja immer auf die erste stelle in der queue rutscht
     setContext("currentTrackIndex", currentTrackIndex);
     let totalTrackTime;
 
+    let audioFile; // = new Audio(tracks[currentTrackIndex].trackSrc);
 
     const loadAndPlayTrack = () => {
-        console.log(tracks[currentTrackIndex].trackSrc)
-        let audioFile = new Audio(tracks[currentTrackIndex].trackSrc);
-
-        //let audioFile = new Audio( getCurrentAudioSrc() );
-        audioFile.onloadedmetadata = () => {
+        //let audioFile = new Audio(tracks[currentTrackIndex].trackSrc);
+        //
+        /* audioFile.onloadedmetadata = () => {
             this.totalTrackTime = audioFile.duration;
             audioFile.play(); //promise überprüfen & ggf error catchen
-        }
+        }*/
+        audioFile = new Audio(tracks[currentTrackIndex].trackSrc);
+        audioFile.play();
+        audioFile.onended = () => {
+            handleNextTrack();
+            console.log("ended");
+        };
 
         //audio.ended
-    }
-    
+    };
 
-    function getCurrentAudioSrc() {
-        return tracks[currentTrackIndex].trackSrc;
+    setContext("audioMuted", true);
+
+    function handleAudioMuted() {
+        audioFile.muted = !audioFile.muted;
     }
 
-    setContext('audioMuted', true);
-    //loadAndPlayTrack();
-    function handleAudioMuted(e){
+    function handlePlayPause() {
+        if (audioFile) {
+            if (audioFile.paused) {
+                audioFile.play();
+            } else {
+                audioFile.pause();
+            }
+        } else{
+            loadAndPlayTrack();
+        }
+    }
+
+    function handleNextTrack(){
+        console.log(tracks.length);
+        currentTrackIndex = (currentTrackIndex + 1) % tracks.length;
+        console.log(currentTrackIndex);
         loadAndPlayTrack();
     }
 </script>
@@ -41,6 +60,9 @@
         <Queue />
         <TrackInfo track={tracks[currentTrackIndex]} />
     </div>
-    <Controls on:audio-muted-update = {handleAudioMuted}/>
+    <Controls
+        on:audio-muted-update={handleAudioMuted}
+        on:audio-playing-update={handlePlayPause}
+    />
     <!--<audio autoplay controls preload="metadata" src={getCurrentAudioSrc()}></audio>-->
 </div>
