@@ -21,7 +21,7 @@
     }
 </script>
 
-<div class="fixed bottom-0 w-full h-20">
+<div class="fixed bottom-0 w-full h-20 flex justify-center px-8">
     <Button icon="mute" on:clicked={toggleMute}></Button>
     <Button icon={playPauseIcon} on:clicked={togglePlay}></Button>
 </div>
