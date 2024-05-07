@@ -7,7 +7,7 @@
 
     let isAudioMuted = getContext("audioMuted");
     let isAudioPlaying = false;
-    let playPauseIcon = "pause";
+    let playPauseIcon = "play";
 
     function toggleMute() {
         isAudioMuted = !isAudioMuted;
@@ -16,7 +16,7 @@
 
     function togglePlay() {
         isAudioPlaying = !isAudioPlaying;
-        playPauseIcon = isAudioPlaying ? "play" : "pause";
+        playPauseIcon = isAudioPlaying ? "pause" : "play";
         dispatch("audio-playing-update", isAudioPlaying);
     }
 </script>
