@@ -2,16 +2,24 @@
     import LikeButton from "./LikeButton.svelte";
     export let artist;
     export let title;
-    export let isCurrentTrack;
+    export let currentTrackIndex;
+    export let trackIndex;
+    export let trackAmount;
+    let isCurrentTrack;
 
-    let activeTailwindClasses = isCurrentTrack ? 'border-l-4 border-aether-salmon':'';
-    let activeTailwindText = isCurrentTrack ? 'text-aether-salmon' : '';
+    isCurrentTrack = currentTrackIndex === trackIndex;
+    let fadingClass = '';
 
+    $: () => {
+        if(currentTrackIndex = (currentTrackIndex + 2) % trackAmount){
+
+        }
+    }
 </script>
 
-<div class="p-2 {activeTailwindClasses}">
-    <div class="w-full flex">
-        <p class="{activeTailwindText}">
+<div class="p-2">
+    <div class="w-full flex ">
+        <p class="{currentTrackIndex === trackIndex ? 'text-aether-salmon' : ''} {fadingClass}">
           {title} - {artist}  
         </p>
         <LikeButton></LikeButton>

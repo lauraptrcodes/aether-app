@@ -6,8 +6,7 @@
     import TrackInfo from "./TrackInfo.svelte";
     import Controls from "./Controls.svelte";
 
-    let currentTrackIndex = 2; // tracks brauchen vllt eindeutige id's weil der aktuelle track ja immer auf die erste stelle in der queue rutscht
-    setContext("currentTrackIndex", currentTrackIndex);
+    let currentTrackIndex = 1; // tracks brauchen vllt eindeutige id's weil der aktuelle track ja immer auf die erste stelle in der queue rutscht
     let totalTrackTime;
 
     let audioFile; // = new Audio(tracks[currentTrackIndex].trackSrc);
@@ -23,7 +22,6 @@
         audioFile.play();
         audioFile.onended = () => {
             handleNextTrack();
-            console.log("ended");
         };
 
         //audio.ended
@@ -48,16 +46,14 @@
     }
 
     function handleNextTrack(){
-        console.log(tracks.length);
         currentTrackIndex = (currentTrackIndex + 1) % tracks.length;
-        console.log(currentTrackIndex);
         loadAndPlayTrack();
     }
 </script>
 
 <div class="aether-content">
     <div class="grid grid-cols-2 gap-4 h-screen mx-8">
-        <Queue />
+        <Queue {currentTrackIndex}/>
         <TrackInfo track={tracks[currentTrackIndex]} />
     </div>
     <Controls
