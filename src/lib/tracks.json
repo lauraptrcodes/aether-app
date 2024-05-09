@@ -16,5 +16,23 @@
         "artist": "bay laurel",
         "trackSrc": "./tracks/glasswoosh2.wav",
         "trackImg": "./img/albumcover3.jpg"
+    },
+    {
+        "title": "titel",
+        "artist": "interpret",
+        "trackSrc": "./tracks/glasswoosh2.wav",
+        "trackImg": "./img/albumcover1.jpg"
+    },
+    {
+        "title": "babedibubedi",
+        "artist": "delivery",
+        "trackSrc": "./tracks/glasswoosh2.wav",
+        "trackImg": "./img/albumcover2.jpg"
+    },
+    {
+        "title": "intro",
+        "artist": "bay laurel",
+        "trackSrc": "./tracks/glasswoosh2.wav",
+        "trackImg": "./img/albumcover3.jpg"
     }
 ]

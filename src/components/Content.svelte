@@ -6,7 +6,7 @@
     import TrackInfo from "./TrackInfo.svelte";
     import Controls from "./Controls.svelte";
 
-    let currentTrackIndex = 1; // tracks brauchen vllt eindeutige id's weil der aktuelle track ja immer auf die erste stelle in der queue rutscht
+    let currentTrackIndex = 0; // tracks brauchen vllt eindeutige id's weil der aktuelle track ja immer auf die erste stelle in der queue rutscht
     let totalTrackTime;
 
     let audioFile; // = new Audio(tracks[currentTrackIndex].trackSrc);
