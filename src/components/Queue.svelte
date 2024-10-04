@@ -10,7 +10,7 @@
     function sortTrackInList(){
 
         //let trackToRecue = sortedTracks.shift();
-       // console.log(trackToRecue);
+        // console.log(trackToRecue);
         // in unsichtbare liste einordnen die nach & nach sichtbar wird, 
         // in sichtbarer liste passiert kein weiteres ranking
         // in unsichtbarer liste wird sortiert nach anzahl likes & zwischendurch neue tracks gesprinkelt
