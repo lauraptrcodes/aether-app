@@ -1,8 +1,18 @@
 <script>
+    import { onMount } from "svelte";
     import Button from "./Button.svelte";
 
     export let track;
     let infoIsOpen = false;
+    let interval = null;
+    export let paused;
+    let timeElapsed = 0;
+    export let trackDuration;
+    $: remainingTime = trackDuration - timeElapsed;
+
+    let emptyProgressBarWidth;
+    $: progressBarWidth = emptyProgressBarWidth ? emptyProgressBarWidth / trackDuration * timeElapsed : 0;
+    $: console.log(progressBarWidth);
 
     let infoOpenClass = infoIsOpen ? "w-24 rounded-lg" : "w-full";
     let infoTextClass = "opacity-0";
@@ -12,6 +22,20 @@
         infoOpenClass = infoIsOpen ? "w-24 rounded-lg m-2" : "w-full";
         infoTextClass = infoIsOpen ? "opacity-100" : "opacity-0";
     }
+
+    onMount(() => {
+        interval = setInterval(() => {
+            if(!trackDuration || paused) {
+                return;
+            }
+            if(remainingTime === 0){
+                clearInterval(interval);
+                timeElapsed = 0;
+                progressBarWidth = 0;
+            }
+            timeElapsed += 1;
+        }, 1000)
+    });
 </script>
 
 <div
@@ -49,6 +73,17 @@
                 links to find the interpret elsewhere
             </p>
         </div>
+    </div>
+    <!--timeline-->
+    <div class="w-full">
+        <div class="w-full h-2 bg-aether-dark-gray z-50" bind:clientWidth={emptyProgressBarWidth}>
+            <div class="h-full bg-aether-salmon transition-all duration-1000 ease-in-out" style="width: {progressBarWidth}px">
+
+            </div>
+        </div>
+        <p class="text-aether-white">
+            {remainingTime}
+        </p>
     </div>
     <div
         class="aether-trackinfo-description p-4 flex justify-between"

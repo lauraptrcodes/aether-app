@@ -10,6 +10,8 @@
     let totalTrackTime;
 
     let audioFile; // = new Audio(tracks[currentTrackIndex].trackSrc);
+    let audioPaused = true;
+    $: console.log(audioPaused);
 
     const loadAndPlayTrack = () => {
         //let audioFile = new Audio(tracks[currentTrackIndex].trackSrc);
@@ -20,6 +22,11 @@
         }*/
         audioFile = new Audio(tracks[currentTrackIndex].trackSrc);
         audioFile.play();
+        audioPaused = false;
+        audioFile.onloadedmetadata = () => {
+            totalTrackTime = audioFile.duration;
+            console.log(totalTrackTime);
+        };
         audioFile.onended = () => {
             handleNextTrack();
         };
@@ -36,8 +43,10 @@
     function handlePlayPause() {
         if (audioFile) {
             if (audioFile.paused) {
+                audioPaused = false;
                 audioFile.play();
             } else {
+                audioPaused = true;
                 audioFile.pause();
             }
         } else{
@@ -54,7 +63,7 @@
 <div class="aether-content">
     <div class="grid grid-cols-2 gap-4 h-screen mx-8">
         <Queue {currentTrackIndex}/>
-        <TrackInfo track={tracks[currentTrackIndex]} />
+        <TrackInfo track={tracks[currentTrackIndex]} paused={audioPaused} trackDuration={totalTrackTime}/>
     </div>
     <Controls
         on:audio-muted-update={handleAudioMuted}
